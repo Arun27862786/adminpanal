@@ -1,0 +1,17 @@
+<?php
+
+$depart = $db->get_all('departments');
+
+if (isset($_REQUEST['id']) && $_REQUEST['id']!=""){
+
+$get_report  = $db->get_row('departments',array('id'=>$_REQUEST['id']));
+  $file_name = $get_report['thumbnail'];
+
+    $delete_reports = $db->delete('departments',array('id'=>$_REQUEST['id']));
+    if($delete_reports){
+         $myFile = "uploads/report/" . $file_name;
+         unlink($myFile); 
+   } 
+ }
+
+ ?>
